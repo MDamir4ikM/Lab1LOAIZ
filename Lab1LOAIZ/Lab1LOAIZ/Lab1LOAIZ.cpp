@@ -1,11 +1,13 @@
-﻿//Задание 1
+﻿//Задание 2
 #include <iostream>
+#include <ctime>
 
 using namespace std;
 
 int main()
 {
 	setlocale(LC_ALL, "ru");
+	srand(time(NULL));
 
 	const int SIZE = 10;
 
@@ -16,7 +18,7 @@ int main()
 
 	for (int i = 0; i < SIZE; i++)
 	{
-		Arr[i] = i;
+		Arr[i] = rand() % 10 + 1;;
 	}
 
 	cout << "Массив: ";
