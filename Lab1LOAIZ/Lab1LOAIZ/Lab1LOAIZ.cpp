@@ -1,4 +1,4 @@
-﻿//Задание 2
+﻿//Задание 3
 #include <iostream>
 #include <ctime>
 
@@ -9,9 +9,14 @@ int main()
 	setlocale(LC_ALL, "ru");
 	srand(time(NULL));
 
-	const int SIZE = 10;
+	int SIZE;
 
-	int Arr[SIZE];
+	cout << "Введите размер массива: ";
+	cin >> SIZE;
+
+	int* Arr = new int[SIZE];
+
+
 	int Max = INT_MIN;
 	int Min = INT_MAX;
 	int Razn;
@@ -51,6 +56,8 @@ int main()
 	Razn = Max - Min;
 
 	cout << "\nРазница между максимальным и минимальным элементом: " << Razn;
+
+	delete[]Arr;
 
 	return 0;
 }
