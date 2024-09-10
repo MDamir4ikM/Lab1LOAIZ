@@ -1,63 +1,39 @@
-﻿//Задание 4
+﻿//Задание 5
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 #include <iostream>
-#include <ctime>
 
-using namespace std;
+struct Student
+{
+	char lastName[30];
+	char firstName[30];
+};
+
+void searchStudent(struct Student students[], int N, char lastName[], char firstName[])
+{
+	for (int i = 0; i < N; i++) {
+		if (strcmp(students[i].lastName, lastName) == 0 && strcmp(students[i].firstName, firstName) == 0)
+		{
+			printf("Найдено: %s %s\n", students[i].lastName, students[i].firstName);
+		}
+	}
+}
 
 int main()
 {
 	setlocale(LC_ALL, "ru");
-	srand(time(NULL));
-
-	int rows;
-	cout << "Введите количество строчек: ";
-	cin >> rows;
-	int cols;
-	cout << "Введите количество столбиков: ";
-	cin >> cols;
-
-	int** ptr_arr = new int* [rows];
-
-	for (int i = 0; i < rows; i++)
+	struct Student students[] =
 	{
-		ptr_arr[i] = new int[cols];
-	}
+	{"Иванов", "Иван"},
+	{"Петров", "Петр"},
+	{"Сидоров", "Сергей"},
+	};
 
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < cols; j++)
-		{
-			ptr_arr[i][j] = rand() % 10;
-		}
-	}
+	char lastName[] = "Петров";
+	char firstName[] = "Петр";
 
-
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < cols; j++)
-		{
-			cout << ptr_arr[i][j] << " ";
-		}
-		cout << endl;
-	}
-
-	int sum;
-	for (int i = 0; i < rows; i++)
-	{
-		sum = 0;
-		for (int j = 0; j < cols; j++)
-		{
-			sum += ptr_arr[j][i];
-		}
-		cout << "Сумма значений стобца " << i + 1 << " : " << sum << endl;
-	}
-
-	for (int i = 0; i < rows; i++)
-	{
-		delete[]ptr_arr[i];
-	}
-
-	delete[]ptr_arr;
+	searchStudent(students, 3, lastName, firstName);
 
 	return 0;
 }
