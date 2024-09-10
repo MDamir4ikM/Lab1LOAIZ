@@ -1,4 +1,4 @@
-﻿//Задание 3
+﻿//Задание 4
 #include <iostream>
 #include <ctime>
 
@@ -9,55 +9,55 @@ int main()
 	setlocale(LC_ALL, "ru");
 	srand(time(NULL));
 
-	int SIZE;
+	int rows;
+	cout << "Введите количество строчек: ";
+	cin >> rows;
+	int cols;
+	cout << "Введите количество столбиков: ";
+	cin >> cols;
 
-	cout << "Введите размер массива: ";
-	cin >> SIZE;
+	int** ptr_arr = new int* [rows];
 
-	int* Arr = new int[SIZE];
-
-
-	int Max = INT_MIN;
-	int Min = INT_MAX;
-	int Razn;
-
-	for (int i = 0; i < SIZE; i++)
+	for (int i = 0; i < rows; i++)
 	{
-		Arr[i] = rand() % 10 + 1;;
+		ptr_arr[i] = new int[cols];
 	}
 
-	cout << "Массив: ";
-
-	for (int i = 0; i < SIZE; i++)
+	for (int i = 0; i < rows; i++)
 	{
-		cout << Arr[i] << " ";
-	}
-
-	for (int i = 0; i < SIZE; i++)
-	{
-		if (Max < Arr[i])
+		for (int j = 0; j < cols; j++)
 		{
-			Max = Arr[i];
+			ptr_arr[i][j] = rand() % 10;
 		}
 	}
 
-	cout << "\nМаксимальный элемент: " << Max;
 
-	for (int i = 0; i < SIZE; i++)
+	for (int i = 0; i < rows; i++)
 	{
-		if (Min > Arr[i])
+		for (int j = 0; j < cols; j++)
 		{
-			Min = Arr[i];
+			cout << ptr_arr[i][j] << " ";
 		}
+		cout << endl;
 	}
 
-	cout << "\nМинимальный элемент: " << Min;
+	int sum;
+	for (int i = 0; i < rows; i++)
+	{
+		sum = 0;
+		for (int j = 0; j < cols; j++)
+		{
+			sum += ptr_arr[j][i];
+		}
+		cout << "Сумма значений стобца " << i + 1 << " : " << sum << endl;
+	}
 
-	Razn = Max - Min;
+	for (int i = 0; i < rows; i++)
+	{
+		delete[]ptr_arr[i];
+	}
 
-	cout << "\nРазница между максимальным и минимальным элементом: " << Razn;
-
-	delete[]Arr;
+	delete[]ptr_arr;
 
 	return 0;
 }
